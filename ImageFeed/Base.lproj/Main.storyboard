@@ -88,7 +88,7 @@
                     <navigationItem key="navigationItem" id="cER-cu-8Vj"/>
                     <connections>
                         <outlet property="tableView" destination="7cN-UM-0mf" id="3Ma-g6-ioL"/>
-                        <segue destination="plh-ia-QCs" kind="show" identifier="ShowSingleImage" id="Ag2-08-eAR"/>
+                        <segue destination="plh-ia-QCs" kind="presentation" identifier="ShowSingleImage" id="Ag2-08-eAR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -220,22 +220,36 @@
         <!--SingleImageViewController-->
         <scene sceneID="4Uj-VU-xhm">
             <objects>
-                <viewController id="plh-ia-QCs" userLabel="SingleImageViewController" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="plh-ia-QCs" userLabel="SingleImageViewController" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CeA-Go-kVd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="kf7-Op-kR8">
-                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gp-wH-Lyp">
+                                <rect key="frame" x="30" y="45" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="DvE-5j-Yoz"/>
+                                    <constraint firstAttribute="width" constant="48" id="OTP-S0-hSl"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="Backward"/>
+                                <connections>
+                                    <action selector="didTapBackButton:" destination="plh-ia-QCs" eventType="touchUpInside" id="fck-hP-puX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Z2x-Ed-lsg"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
-                            <constraint firstItem="Z2x-Ed-lsg" firstAttribute="bottom" secondItem="kf7-Op-kR8" secondAttribute="bottom" id="8Ii-NL-xiZ"/>
-                            <constraint firstItem="kf7-Op-kR8" firstAttribute="leading" secondItem="Z2x-Ed-lsg" secondAttribute="leading" id="Va6-Uc-nD6"/>
-                            <constraint firstItem="Z2x-Ed-lsg" firstAttribute="trailing" secondItem="kf7-Op-kR8" secondAttribute="trailing" id="sCi-kt-6rj"/>
-                            <constraint firstItem="kf7-Op-kR8" firstAttribute="top" secondItem="Z2x-Ed-lsg" secondAttribute="top" id="xhm-Jl-NE8"/>
+                            <constraint firstItem="6gp-wH-Lyp" firstAttribute="top" secondItem="Z2x-Ed-lsg" secondAttribute="top" constant="8" id="7I8-lO-15R"/>
+                            <constraint firstAttribute="bottom" secondItem="kf7-Op-kR8" secondAttribute="bottom" id="8Ii-NL-xiZ"/>
+                            <constraint firstItem="6gp-wH-Lyp" firstAttribute="leading" secondItem="Z2x-Ed-lsg" secondAttribute="leading" constant="8" id="L3c-on-6w8"/>
+                            <constraint firstItem="kf7-Op-kR8" firstAttribute="leading" secondItem="CeA-Go-kVd" secondAttribute="leading" id="Va6-Uc-nD6"/>
+                            <constraint firstAttribute="trailing" secondItem="kf7-Op-kR8" secondAttribute="trailing" id="sCi-kt-6rj"/>
+                            <constraint firstItem="kf7-Op-kR8" firstAttribute="top" secondItem="CeA-Go-kVd" secondAttribute="top" id="xhm-Jl-NE8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0rG-6m-MSa"/>
@@ -250,6 +264,7 @@
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
+        <image name="Backward" width="24" height="24"/>
         <image name="Exit" width="24" height="24"/>
         <image name="Photo" width="70" height="70"/>
         <image name="image_list_active" width="30" height="30"/>
