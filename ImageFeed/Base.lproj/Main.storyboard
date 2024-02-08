@@ -172,15 +172,6 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="kf7-Op-kR8">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="132"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aj1-d1-1at" userLabel="Sharing Button">
-                                        <rect key="frame" x="171" y="766" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="Sharing"/>
-                                        <connections>
-                                            <action selector="didTapShareButton:" destination="plh-ia-QCs" eventType="touchUpInside" id="hgx-yF-Nhz"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="kf7-Op-kR8" firstAttribute="leading" secondItem="ehG-Yx-i1Q" secondAttribute="leading" id="8M9-Ry-GBH"/>
@@ -206,12 +197,26 @@
                                     <action selector="didTapBackButton:" destination="plh-ia-QCs" eventType="touchUpInside" id="fck-hP-puX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aj1-d1-1at" userLabel="Sharing Button">
+                                <rect key="frame" x="171.66666666666666" y="751" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="17Y-IS-CRt"/>
+                                    <constraint firstAttribute="width" constant="50" id="8YI-fZ-Lpv"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="Sharing"/>
+                                <connections>
+                                    <action selector="didTapShareButton:" destination="plh-ia-QCs" eventType="touchUpInside" id="hgx-yF-Nhz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Z2x-Ed-lsg"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
+                            <constraint firstItem="Z2x-Ed-lsg" firstAttribute="bottom" secondItem="Aj1-d1-1at" secondAttribute="bottom" constant="51" id="4Fn-hm-30q"/>
                             <constraint firstItem="6gp-wH-Lyp" firstAttribute="top" secondItem="Z2x-Ed-lsg" secondAttribute="top" constant="11" id="7I8-lO-15R"/>
                             <constraint firstItem="ehG-Yx-i1Q" firstAttribute="top" secondItem="CeA-Go-kVd" secondAttribute="top" id="FIb-q2-hhG"/>
+                            <constraint firstItem="Aj1-d1-1at" firstAttribute="centerX" secondItem="Z2x-Ed-lsg" secondAttribute="centerX" id="GwK-MK-UTz"/>
                             <constraint firstItem="6gp-wH-Lyp" firstAttribute="leading" secondItem="Z2x-Ed-lsg" secondAttribute="leading" constant="9" id="L3c-on-6w8"/>
                             <constraint firstItem="Z2x-Ed-lsg" firstAttribute="trailing" secondItem="ehG-Yx-i1Q" secondAttribute="trailing" id="MPE-Fg-1L7"/>
                             <constraint firstItem="ehG-Yx-i1Q" firstAttribute="leading" secondItem="Z2x-Ed-lsg" secondAttribute="leading" id="ZQl-TU-JSN"/>
