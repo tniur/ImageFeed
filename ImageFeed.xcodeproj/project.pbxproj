@@ -57,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				E9C73B5A2B6843CA00E531AB /* Assets.xcassets */,
-				E97EBADC2B76929B00657AE7 /* Constants.swift */,
 			);
 			path = Resourses;
 			sourceTree = "<group>";
@@ -69,6 +68,14 @@
 			);
 			name = SingleImageView;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		E954A9EC2BD74AFB004AA6AB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E97EBADC2B76929B00657AE7 /* Constants.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		E97278D32B6AFFFF00F157F3 /* ImagesList */ = {
@@ -99,13 +106,14 @@
 		E9C73B502B6843C700E531AB /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
-				E9C73B512B6843C700E531AB /* AppDelegate.swift */,
-				E9C73B532B6843C700E531AB /* SceneDelegate.swift */,
+				E954A9EC2BD74AFB004AA6AB /* Helpers */,
 				E930325B2B7113A90061BACB /* ProfileView */,
 				E97278D32B6AFFFF00F157F3 /* ImagesList */,
 				E93032652B716C8F0061BACB /* SingleImageView */,
-				E9C73B572B6843C700E531AB /* Main.storyboard */,
 				E930325E2B711BD40061BACB /* Resourses */,
+				E9C73B512B6843C700E531AB /* AppDelegate.swift */,
+				E9C73B532B6843C700E531AB /* SceneDelegate.swift */,
+				E9C73B572B6843C700E531AB /* Main.storyboard */,
 				E9C73B5C2B6843CA00E531AB /* LaunchScreen.storyboard */,
 				E9C73B5F2B6843CA00E531AB /* Info.plist */,
 			);
