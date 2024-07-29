@@ -11,7 +11,7 @@ final class OAuth2Service {
     static let shared = OAuth2Service()
     private init() {}
     
-    func makeOAuthTokenRequest(code: String) -> URLRequest? {
+    private func makeOAuthTokenRequest(code: String) -> URLRequest? {
         let baseURL = URL(string: "https://unsplash.com")!
         guard let url = URL(
             string: "/oauth/token"

@@ -13,14 +13,12 @@ final class ProfileViewController: UIViewController {
     
     private let userImage: UIImageView = {
         let image = UIImageView(image: UIImage(named: "UserPhoto"))
-        image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
     private let logoutButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "logout"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .ypRed
         return button
     }()
@@ -28,7 +26,6 @@ final class ProfileViewController: UIViewController {
     private let userNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Екатерина Новикова"
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .ypWhite
         label.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         return label
@@ -37,7 +34,6 @@ final class ProfileViewController: UIViewController {
     private let userLoginLabel: UILabel = {
         let label = UILabel()
         label.text = "@ekaterina_nov"
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .ypGray
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         return label
@@ -46,7 +42,6 @@ final class ProfileViewController: UIViewController {
     private let userDescriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "Hello, world!"
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .ypWhite
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         return label
@@ -67,12 +62,12 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupView() {
-        self.view.backgroundColor = .ypBlack
-        self.view.addSubview(userImage)
-        self.view.addSubview(logoutButton)
-        self.view.addSubview(userNameLabel)
-        self.view.addSubview(userLoginLabel)
-        self.view.addSubview(userDescriptionLabel)
+        view.backgroundColor = .ypBlack
+        
+        [userImage, logoutButton, userNameLabel, userLoginLabel, userDescriptionLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview($0)
+        }
     }
     
     private func setupConstraints() {

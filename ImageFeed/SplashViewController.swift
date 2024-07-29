@@ -8,18 +8,23 @@
 import UIKit
 
 final class SplashViewController: UIViewController {
+    
     private let storage = OAuth2TokenStorage()
     private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreenSegueIdentifier"
+    
+    // MARK: - Lifecycle
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let token = storage.token {
+        if storage.token != nil {
             switchToTabBarController()
         }  else {
             performSegue(withIdentifier: showAuthenticationScreenSegueIdentifier, sender: nil)
         }
     }
+    
+    // MARK: - Functions
     
     private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else {

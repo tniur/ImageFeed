@@ -18,11 +18,13 @@ final class WebViewViewController: UIViewController {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet private var webView: WKWebView!
     
-    enum WebViewConstants {
+    private enum WebViewConstants {
         static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
     }
     
     weak var delegate: WebViewViewControllerDelegate?
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +50,8 @@ final class WebViewViewController: UIViewController {
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
     }
     
+    // MARK: - Overrides
+    
     override func observeValue(
         forKeyPath keyPath: String?,
         of object: Any?,
@@ -60,6 +64,8 @@ final class WebViewViewController: UIViewController {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
+    
+    // MARK: - Functions
 
     private func updateProgress() {
         progressView.progress = Float(webView.estimatedProgress)

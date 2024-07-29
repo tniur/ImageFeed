@@ -14,25 +14,31 @@ protocol AuthViewControllerDelegate: AnyObject {
 final class AuthViewController: UIViewController {
     weak var delegate: AuthViewControllerDelegate?
     
-    private let ShowWebViewSegueIdentifier = "ShowWebView"
+    private let showWebViewSegueIdentifier = "ShowWebView"
     private let authService = OAuth2Service.shared
     private let tokenStorage = OAuth2TokenStorage()
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackButton()
     }
     
+    // MARK: - Overrides
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ShowWebViewSegueIdentifier {
+        if segue.identifier == showWebViewSegueIdentifier {
             guard
                 let webViewViewController = segue.destination as? WebViewViewController
-            else { fatalError("Failed to prepare for \(ShowWebViewSegueIdentifier)") }
+            else { fatalError("Failed to prepare for \(showWebViewSegueIdentifier)") }
             webViewViewController.delegate = self
         } else {
             super.prepare(for: segue, sender: sender)
         }
     }
+    
+    // MARK: - Functions
     
     private func configureBackButton() {
         navigationController?.navigationBar.backIndicatorImage = UIImage(named: "nav_back_button")
@@ -52,6 +58,7 @@ extension AuthViewController: WebViewViewControllerDelegate {
                 self.tokenStorage.token = token
                 self.delegate?.didAuthenticate(self)
             case .failure(let error):
+                // TODO: - Добавить логику обработки ошибки
                 print(error)
             }
         }

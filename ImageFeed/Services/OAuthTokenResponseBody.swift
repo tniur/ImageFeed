@@ -8,10 +8,10 @@
 import Foundation
 
 struct OAuthTokenResponseBody: Decodable {
-    var accessToken: String
-    var tokenType: String
-    var scope: String
-    var createdAt: Int
+    let accessToken: String
+    let tokenType: String
+    let scope: String
+    let createdAt: Int
     
     enum CodingKeys: String, CodingKey{
         case accessToken = "access_token"
@@ -20,7 +20,12 @@ struct OAuthTokenResponseBody: Decodable {
         case createdAt = "created_at"
     }
     
-    init(accessToken: String,tokenType: String, scope: String, createdAt: Int) {
+    init(
+        accessToken: String,
+        tokenType: String,
+        scope: String,
+        createdAt: Int
+    ) {
         self.accessToken = accessToken
         self.tokenType = tokenType
         self.scope = scope
