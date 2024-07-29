@@ -7,74 +7,123 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
+    
+    // MARK: - Views
+    
+    private let userImage: UIImageView = {
+        let image = UIImageView(image: UIImage(named: "UserPhoto"))
+        return image
+    }()
+    
+    private let logoutButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "logout"), for: .normal)
+        button.tintColor = .ypRed
+        return button
+    }()
+    
+    private let userNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Екатерина Новикова"
+        label.textColor = .ypWhite
+        label.font = UIFont.systemFont(ofSize: 23, weight: .bold)
+        return label
+    }()
+    
+    private let userLoginLabel: UILabel = {
+        let label = UILabel()
+        label.text = "@ekaterina_nov"
+        label.textColor = .ypGray
+        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        return label
+    }()
+    
+    private let userDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Hello, world!"
+        label.textColor = .ypWhite
+        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        return label
+    }()
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setup()
+    }
+    
+    // MARK: - Setups
+    
+    private func setup() {
+        setupView()
+        setupConstraints()
+    }
+    
+    private func setupView() {
         view.backgroundColor = .ypBlack
         
-        let userImage = UIImageView(image: UIImage(named: "UserPhoto"))
-        let logoutButton = UIButton.systemButton(with: UIImage(named: "logout")!, target: self, action: #selector(self.didTapLogoutButton))
-        let userName = UILabel()
-        let userLogin = UILabel()
-        let userDescription = UILabel()
-        
-        setUserImageView(userImage)
-        setLogoutButton(button: logoutButton, image: userImage)
-        setUserName(label: userName, image: userImage)
-        setUserLogin(label: userLogin, topLabel: userName)
-        setUserDescription(label: userDescription, topLabel: userLogin)
+        [userImage, logoutButton, userNameLabel, userLoginLabel, userDescriptionLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview($0)
+        }
     }
     
-    private func setUserImageView(_ image: UIImageView) {
-        image.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(image)
-        image.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        image.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        image.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
-        image.topAnchor.constraint(equalTo: view.topAnchor, constant: 76).isActive = true
+    private func setupConstraints() {
+        setupUserImageConstraints()
+        setupLogoutButtonConstraints()
+        setupUserNameLabelConstraints()
+        setupUserLoginLabelConstraints()
+        setupUserDescriptionLabelConstraints()
     }
     
-    private func setLogoutButton(button: UIButton, image: UIImageView) {
-        button.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(button)
-        button.tintColor = .ypRed
-        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        button.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
-        button.centerYAnchor.constraint(equalTo: image.centerYAnchor).isActive = true
+    private func setupActions() {
+        logoutButton.addTarget(self, action: #selector(self.didTapLogoutButton), for: .touchUpInside)
     }
     
-    private func setUserName(label: UILabel, image: UIImageView) {
-        label.text = "Екатерина Новикова"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
-        label.textColor = .ypWhite
-        label.font = UIFont.systemFont(ofSize: 23, weight: .bold)
-        label.leadingAnchor.constraint(equalTo: image.leadingAnchor).isActive = true
-        label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 8).isActive = true
+    // MARK: - Constraints
+    
+    private func setupUserImageConstraints() {
+        NSLayoutConstraint.activate([
+            userImage.heightAnchor.constraint(equalToConstant: 70),
+            userImage.widthAnchor.constraint(equalToConstant: 70),
+            userImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            userImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 76)
+        ])
     }
     
-    private func setUserLogin(label: UILabel, topLabel: UILabel) {
-        label.text = "@ekaterina_nov"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
-        label.textColor = .ypGray
-        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        label.leadingAnchor.constraint(equalTo: topLabel.leadingAnchor).isActive = true
-        label.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 8).isActive = true
+    private func setupLogoutButtonConstraints() {
+        NSLayoutConstraint.activate([
+            logoutButton.heightAnchor.constraint(equalToConstant: 44),
+            logoutButton.widthAnchor.constraint(equalToConstant: 44),
+            logoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            logoutButton.centerYAnchor.constraint(equalTo: userImage.centerYAnchor)
+        ])
     }
     
-    private func setUserDescription(label: UILabel, topLabel: UILabel) {
-        label.text = "Hello, world!"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
-        label.textColor = .ypWhite
-        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        label.leadingAnchor.constraint(equalTo: topLabel.leadingAnchor).isActive = true
-        label.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 8).isActive = true
+    private func setupUserNameLabelConstraints() {
+        NSLayoutConstraint.activate([
+            userNameLabel.leadingAnchor.constraint(equalTo: userImage.leadingAnchor),
+            userNameLabel.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 8)
+        ])
     }
+    
+    private func setupUserLoginLabelConstraints() {
+        NSLayoutConstraint.activate([
+            userLoginLabel.leadingAnchor.constraint(equalTo: userNameLabel.leadingAnchor),
+            userLoginLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 8)
+        ])
+    }
+    
+    private func setupUserDescriptionLabelConstraints() {
+        NSLayoutConstraint.activate([
+            userDescriptionLabel.leadingAnchor.constraint(equalTo: userLoginLabel.leadingAnchor),
+            userDescriptionLabel.topAnchor.constraint(equalTo: userLoginLabel.bottomAnchor, constant: 8)
+        ])
+    }
+    
+    // MARK: - Functions
     
     @objc private func didTapLogoutButton() {}
 }
