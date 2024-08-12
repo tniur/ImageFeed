@@ -51,17 +51,37 @@ final class AuthViewController: UIViewController {
 extension AuthViewController: WebViewViewControllerDelegate {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         vc.dismiss(animated: true)
+        UIBlockingProgressHUD.show()
         
         authService.fetchOAuthToken(code: code) { result in
+            
+            UIBlockingProgressHUD.dismiss()
+            
             switch result{
             case .success(let token):
                 self.tokenStorage.token = token
                 self.delegate?.didAuthenticate(self)
             case .failure(let error):
-                // TODO: - Добавить логику обработки ошибки
-                print(error)
+                self.showErrorAlert()
+                print("[fetchOAuthToken]: FetchOAuthToken - \(error)")
             }
         }
+    }
+    
+    func showErrorAlert() {
+        let alert = UIAlertController(
+            title: "Что-то пошло не так",
+            message: "Не удалось войти в систему",
+            preferredStyle: .alert)
+        
+        alert.view.accessibilityIdentifier = "error"
+        
+        let action = UIAlertAction(title: "Ок", style: .default) { _ in
+            alert.dismiss(animated: true)
+        }
+        
+        alert.addAction(action)
+        self.present(alert, animated: true)
     }
     
     func webViewViewControllerDidCancel(_ vc: WebViewViewController) {

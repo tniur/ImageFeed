@@ -6,13 +6,17 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
+    private var profileImageServiceObserver: NSObjectProtocol?
+    private let profileService: ProfileService = ProfileService.shared
     
     // MARK: - Views
     
     private let userImage: UIImageView = {
         let image = UIImageView(image: UIImage(named: "UserPhoto"))
+        image.layer.cornerRadius = 35
         return image
     }()
     
@@ -57,8 +61,27 @@ final class ProfileViewController: UIViewController {
     // MARK: - Setups
     
     private func setup() {
+        setupObserver()
+        updateAvatar()
         setupView()
         setupConstraints()
+        
+        guard let profile = profileService.profile else {
+            return
+        }
+        updateProfileDetails(profile: profile)
+    }
+    
+    private func setupObserver() {
+        profileImageServiceObserver = NotificationCenter.default
+            .addObserver(
+                forName: ProfileImageService.didChangeNotification,
+                object: nil,
+                queue: .main
+            ) { [weak self] _ in
+                guard let self = self else { return }
+                self.updateAvatar()
+            }
     }
     
     private func setupView() {
@@ -80,6 +103,12 @@ final class ProfileViewController: UIViewController {
     
     private func setupActions() {
         logoutButton.addTarget(self, action: #selector(self.didTapLogoutButton), for: .touchUpInside)
+    }
+    
+    private func updateProfileDetails(profile: Profile) {
+        userNameLabel.text = profile.name
+        userLoginLabel.text = profile.loginName
+        userDescriptionLabel.text = profile.bio
     }
     
     // MARK: - Constraints
@@ -124,6 +153,20 @@ final class ProfileViewController: UIViewController {
     }
     
     // MARK: - Functions
+    
+    private func updateAvatar() {
+        guard
+            let profileImageURL = ProfileImageService.shared.avatarURL,
+            let url = URL(string: profileImageURL)
+        else {
+            return
+        }
+        
+        let processor = RoundCornerImageProcessor(cornerRadius: 35)
+        userImage.kf.setImage(with: url,
+                              placeholder: UIImage(named: "UserPhoto"),
+                              options: [.processor(processor)])
+    }
     
     @objc private func didTapLogoutButton() {}
 }
