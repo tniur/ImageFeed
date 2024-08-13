@@ -7,10 +7,14 @@
 
 import Foundation
 
+enum ProfileServiceError: Error {
+    case profileNotFound
+}
+
 struct ProfileResult: Codable {
     var username: String
     var firstName: String
-    var lastName: String
+    var lastName: String?
     var bio: String?
     
     enum CodingKeys: String, CodingKey {
@@ -27,9 +31,15 @@ struct Profile {
     var loginName: String
     var bio: String?
     
-    init(username: String, firstName: String, lastName: String, bio: String?) {
+    init(username: String, firstName: String, lastName: String?, bio: String?) {
         self.username = username
-        name = firstName + " " + lastName
+        
+        if let lastName {
+            name = firstName + " " + lastName
+        } else {
+            name = firstName
+        }
+        
         self.loginName = "@" + username
         self.bio = bio
     }
@@ -67,6 +77,8 @@ final class ProfileService {
                 
                 if let profile = self?.profile {
                     completion(.success(profile))
+                } else {
+                    completion(.failure(ProfileServiceError.profileNotFound))
                 }
             case .failure(let error):
                 print("[fetchProfile]: FetchProfileError - \(error)")
