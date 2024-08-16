@@ -7,7 +7,14 @@
 
 import Foundation
 
+enum AuthServiceError: Error {
+    case invalidRequest
+}
+
 final class OAuth2Service {
+    private var task: URLSessionTask?
+    private var lastCode: String?
+    
     static let shared = OAuth2Service()
     private init() {}
     
@@ -22,6 +29,7 @@ final class OAuth2Service {
             + "&&grant_type=authorization_code",
             relativeTo: baseURL
         ) else {
+            assertionFailure("Failed to create URL")
             return nil
         }
         
@@ -31,25 +39,44 @@ final class OAuth2Service {
     }
     
     func fetchOAuthToken(code: String, completion: @escaping (Result<String,Error>) -> Void) {
-        guard let request = makeOAuthTokenRequest(code: code) else {
+        if !Thread.isMainThread {
+            DispatchQueue.main.async {
+                self.fetchOAuthToken(code: code, completion: completion)
+            }
             return
         }
         
-        let task = URLSession.shared.data(for: request) { result in
+        if lastCode == code {
+            print("[fetchOAuthToken]: AuthServiceError - \(AuthServiceError.invalidRequest)")
+            completion(.failure(AuthServiceError.invalidRequest))
+            return
+        }
+        
+        task?.cancel()
+        
+        lastCode = code
+        
+        guard let request = makeOAuthTokenRequest(code: code) else {
+            print("[fetchOAuthToken]: AuthServiceError - \(AuthServiceError.invalidRequest)")
+            completion(.failure(AuthServiceError.invalidRequest))
+            return
+        }
+        
+        let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
+            
             switch result {
             case .success(let data):
-                do {
-                    let decoder = JSONDecoder()
-                    let response = try decoder.decode(OAuthTokenResponseBody.self, from: data)
-                    completion(.success(response.accessToken))
-                    
-                } catch {
-                    completion(.failure(error))
-                }
+                let token = data.accessToken
+                completion(.success(token))
             case .failure(let error):
+                print("[fetchOAuthToken]: AuthServiceError - \(error)")
                 completion(.failure(error))
             }
+            self?.task = nil
+            self?.lastCode = nil
         }
+        
+        self.task = task
         task.resume()
     }
 }
