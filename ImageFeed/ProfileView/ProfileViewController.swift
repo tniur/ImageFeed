@@ -65,6 +65,7 @@ final class ProfileViewController: UIViewController {
         updateAvatar()
         setupView()
         setupConstraints()
+        setupActions()
         
         guard let profile = profileService.profile else {
             return
@@ -168,5 +169,25 @@ final class ProfileViewController: UIViewController {
                               options: [.processor(processor)])
     }
     
-    @objc private func didTapLogoutButton() {}
+    @objc private func didTapLogoutButton() {
+        let alert = UIAlertController(
+            title: "Выход.",
+            message: "Вы действительно хотите выйти?",
+            preferredStyle: .alert)
+        
+        alert.view.accessibilityIdentifier = "error"
+        
+        let dismissAction = UIAlertAction(title: "Нет.", style: .default) { _ in
+            alert.dismiss(animated: true)
+        }
+        
+        let tryAction = UIAlertAction(title: "Да!", style: .default) { _ in
+            let profileLogoutService = ProfileLogoutService.shared
+            profileLogoutService.logout()
+        }
+        
+        alert.addAction(dismissAction)
+        alert.addAction(tryAction)
+        self.present(alert, animated: true)
+    }
 }

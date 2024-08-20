@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E91AF7A92C70BFDB00162FD5 /* ImagesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AF7A82C70BFDB00162FD5 /* ImagesListService.swift */; };
 		E923DF122C62523700B6CA6E /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = E923DF112C62523700B6CA6E /* ProgressHUD */; };
 		E923DF142C66415800B6CA6E /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E923DF132C66415800B6CA6E /* UIBlockingProgressHUD.swift */; };
 		E923DF172C664DAA00B6CA6E /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E923DF162C664DAA00B6CA6E /* ProfileService.swift */; };
@@ -31,9 +32,11 @@
 		E9C73B5E2B6843CA00E531AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9C73B5C2B6843CA00E531AB /* LaunchScreen.storyboard */; };
 		E9D39AE52C6A5DC700C839B2 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = E9D39AE42C6A5DC700C839B2 /* SwiftKeychainWrapper */; };
 		E9D39AE72C6A829100C839B2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D39AE62C6A829100C839B2 /* TabBarController.swift */; };
+		E9F4157B2C73B44800467D26 /* ProfileLogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4157A2C73B44800467D26 /* ProfileLogoutService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E91AF7A82C70BFDB00162FD5 /* ImagesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListService.swift; sourceTree = "<group>"; };
 		E923DF132C66415800B6CA6E /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		E923DF162C664DAA00B6CA6E /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		E923DF182C66747F00B6CA6E /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		E9C73B5D2B6843CA00E531AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9C73B5F2B6843CA00E531AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D39AE62C6A829100C839B2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E9F4157A2C73B44800467D26 /* ProfileLogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLogoutService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,8 @@
 				E99C64FF2C53CC2B00E7E08F /* OAuth2TokenStorage.swift */,
 				E923DF162C664DAA00B6CA6E /* ProfileService.swift */,
 				E923DF182C66747F00B6CA6E /* ProfileImageService.swift */,
+				E91AF7A82C70BFDB00162FD5 /* ImagesListService.swift */,
+				E9F4157A2C73B44800467D26 /* ProfileLogoutService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -277,7 +283,9 @@
 				E93032642B716C8A0061BACB /* SingleImageViewController.swift in Sources */,
 				E923DF142C66415800B6CA6E /* UIBlockingProgressHUD.swift in Sources */,
 				E9C73B542B6843C700E531AB /* SceneDelegate.swift in Sources */,
+				E9F4157B2C73B44800467D26 /* ProfileLogoutService.swift in Sources */,
 				E99C64FC2C53C5E600E7E08F /* URLSession+data.swift in Sources */,
+				E91AF7A92C70BFDB00162FD5 /* ImagesListService.swift in Sources */,
 				E99C64F32C4E78B200E7E08F /* WebViewViewController.swift in Sources */,
 				E99C64F92C517C1F00E7E08F /* OAuth2Service.swift in Sources */,
 				E99C65002C53CC2B00E7E08F /* OAuth2TokenStorage.swift in Sources */,

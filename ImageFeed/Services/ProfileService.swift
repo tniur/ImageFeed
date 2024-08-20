@@ -52,6 +52,10 @@ final class ProfileService {
     private let tokenStorage = OAuth2TokenStorage()
     private(set) var profile : Profile?
     
+    func cleanProfile() {
+        profile = nil
+    }
+    
     private func makeURLRequest(token: String) -> URLRequest? {
         guard let url = URL(string: "https://api.unsplash.com/me") else {
             return nil
