@@ -41,6 +41,7 @@
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHg-UJ-Dou" userLabel="Like Button">
                                                     <rect key="frame" x="333" y="4" width="44" height="44"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="LikeButton"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="like_button_active"/>
                                                     <connections>
@@ -148,6 +149,7 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gp-wH-Lyp" userLabel="Back Button">
                                 <rect key="frame" x="9" y="11" width="48" height="48"/>
+                                <accessibility key="accessibilityConfiguration" identifier="nav back button white"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="DvE-5j-Yoz"/>
                                     <constraint firstAttribute="width" constant="48" id="OTP-S0-hSl"/>
@@ -209,9 +211,10 @@
                                     <constraint firstAttribute="height" constant="60" id="nPc-5W-cwL"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qez-G1-ScA">
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Authenticate" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qez-G1-ScA">
                                 <rect key="frame" x="16" y="720" width="361" height="48"/>
                                 <color key="backgroundColor" name="YP White"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Authenticate"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="MGN-HE-sFS"/>
                                 </constraints>
@@ -275,7 +278,7 @@
         <!--Web View View Controller-->
         <scene sceneID="7nn-rn-doo">
             <objects>
-                <viewController id="p1g-VD-IEw" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewViewController" id="p1g-VD-IEw" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="of4-N7-3OU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -295,6 +298,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qdG-jy-KPA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <accessibility key="accessibilityConfiguration" identifier="UnsplashWebView"/>
                         <constraints>
                             <constraint firstItem="HIQ-L0-9HO" firstAttribute="leading" secondItem="qdG-jy-KPA" secondAttribute="leading" id="2tn-DZ-yNy"/>
                             <constraint firstItem="Wbc-UX-NLF" firstAttribute="leading" secondItem="of4-N7-3OU" secondAttribute="leading" id="EFx-Cz-Jkn"/>
