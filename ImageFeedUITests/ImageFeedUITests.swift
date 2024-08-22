@@ -75,16 +75,14 @@ class Image_FeedUITests: XCTestCase {
     }
     
     func testProfile() throws {
-        func testProfile() throws {
-            sleep(3)
-            app.tabBars.buttons.element(boundBy: 1).tap()
-            
-            XCTAssertTrue(app.staticTexts["Name Lastname"].exists)
-            XCTAssertTrue(app.staticTexts["@username"].exists)
-            
-            app.buttons["logout button"].tap()
-            
-            app.alerts["Выход."].scrollViews.otherElements.buttons["Да!"].tap()
-        }
+        sleep(3)
+        app.tabBars.buttons.element(boundBy: 1).tap()
+        
+        XCTAssertTrue(app.staticTexts["Name Lastname"].exists)
+        XCTAssertTrue(app.staticTexts["@username"].exists)
+        
+        app.buttons["logout button"].tap()
+        
+        app.alerts["Выход."].scrollViews.otherElements.buttons["Да!"].tap()
     }
 }
